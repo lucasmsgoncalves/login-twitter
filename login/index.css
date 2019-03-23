@@ -1,0 +1,24 @@
+.container {
+    max-width: 60%;
+    flex-direction: column;
+    margin: o auto;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.item-flex {
+	flex: 1;
+	margin: 5px;
+	font-size: 1.5em;
+}
+
+.title{
+    width: 50%;
+}
+
+h1{
+    color:#26d394;
+    font-weight: bold;
+}

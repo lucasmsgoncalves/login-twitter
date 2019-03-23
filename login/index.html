@@ -1,21 +1,45 @@
 <html DOCTYPE!>
-    <head>
-        <meta charset="UTF-8">
-        <title>LOGIN</title>
-    </head>
-    <body bgcolor="white">
-      <div>
-        <h1 id="title">
-            SIGN IN TO MONITORAR
+  <head>
+      <meta charset="UTF-8">
+      <title>LOGIN</title>
+      <link rel="stylesheet" type="text/css" href="index.css">
+      <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="oauth.js"></script>
+  </head>
+  <body>
+    <div class="container row">
+      <div class="title item-flex">
+        <h1>
+          SIGN IN TO MONITORAR
         </h1>
       </div>
-      <div>
-        <a href="https://twitter.com/"><img src="../images/logo-twitter.png"></a>
+      <div class="item-flex">
+        <img id="twitter-button" src="../images/logo-twitter.png">
         <p>Ou entre com sua conta.</p>
         <input type="text" placeholder="Usuário"><br><br>
         <input type="password" placeholder="Senha"><br><br>
         <a href="">Esqueceu sua senha?</a><br><br>
         <button>SIGN IN</button>
       </div>
-    </body>
+    </div>
+  </body>
+  <script>
+    $('#twitter-button').on('click', function() {
+      OAuth.initialize('w5AnVi8LmAbXq2Ne25bBPzpmqBE');
+      
+      OAuth.popup('twitter').then(twitter => {
+        console.log('twitter:', twitter);
+        
+        twitter.me().then(data => {
+          console.log('data:', data);
+        });
+
+        twitter.get('/1.1/account/verify_credentials.json?include_email=true').then(data => {
+          console.log('self data:', data);
+          console.log(data.name);
+          window.location.replace("../profile/index.html?data="+JSON.stringify(data));
+        })    
+      });
+    })
+  </script>
 </html>

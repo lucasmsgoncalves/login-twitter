@@ -1,0 +1,30 @@
+<html DOCTYPE!>
+    <head>
+        <meta charset="UTF-8">
+        <title>PROFILE</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <script src="../login/index.html"></script>
+        <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="oauth.js"></script> -->
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    </head>
+    <body bgcolor="white">
+        <h1>
+            Seja Bem-Vindo, <span id="user"></span>
+        </h1>
+        <img id="avatar">
+    </body>
+    <script>
+        var url_string = window.location.href
+        var url = new URL(url_string);
+        var c = url.searchParams.get("data");
+        var objeto = JSON.parse(c);
+        console.log(objeto);
+        console.log(objeto.name);
+        var username = document.getElementById("user");
+        username.innerHTML = objeto.name;
+
+        var avatar = document.getElementById("avatar");
+        avatar.src = objeto.profile_image_url_https;
+    </script>
+</html>
